@@ -17,4 +17,8 @@ export class AppService {
   getMultiplication(num1: number, num2: number) {
     return num1 * num2;
   }
+  getDivision(num1: number, num2: number): number {
+    return num1 / num2;
+}
+
 }
