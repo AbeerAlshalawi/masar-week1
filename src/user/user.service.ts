@@ -22,6 +22,7 @@ export class UserService {
       );
     }
 
+
     
     try {
       const user = this.userRepository.create({ fullName, age });
@@ -53,6 +54,9 @@ export class UserService {
     // Delete the user from the database
     await this.userRepository.delete(id);
     return { message: 'User was deleted', user };
+  }
+
+
   }
 
 

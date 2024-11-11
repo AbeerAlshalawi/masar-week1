@@ -26,4 +26,12 @@ export class AppController {
   getMultiplication(@Query('num1') num1: number, @Query('num2') num2: number) {
     return this.appService.getMultiplication(num1, num2);
   }
+  @Get('/find-division')
+  getDivision(@Query('num1') num1: number, @Query('num2') num2: number) {
+    if (num2 === 0) {
+        return 'Error: Division by zero is not allowed';
+    }
+    return this.appService.getDivision(num1, num2);
+}
+
 }
