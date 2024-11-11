@@ -19,6 +19,8 @@ export class AppController {
   getSubtraction(@Query('num1') num1: number, @Query('num2') num2: number) {
     return this.appService.getSubtraction(num1, num2);
   }
+  
+
 
   @Get('/find-multiplication')
   getMultiplication(@Query('num1') num1: number, @Query('num2') num2: number) {

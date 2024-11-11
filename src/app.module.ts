@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 const entitiesPath = __dirname + '/**/*.entity{.ts,.js}';
 
+
 @Module({
   imports: [
     ItemModule,
@@ -17,11 +18,11 @@ const entitiesPath = __dirname + '/**/*.entity{.ts,.js}';
       port: 5432,
       username: 'postgres',
       password: '',
-      database: 'masar-db',
+      database: 'postgres',
       entities: [entitiesPath],
       synchronize: false,
       logging: false,
-    }),
+    }), 
   ],
   controllers: [AppController],
   providers: [AppService],

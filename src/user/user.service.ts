@@ -22,11 +22,43 @@ export class UserService {
       );
     }
 
-    const user = this.userRepository.create({ fullName, age });
-    await this.userRepository.save(user);
 
-    return { message: 'User created successfully', user };
+    
+    try {
+      const user = this.userRepository.create({ fullName, age });
+      await this.userRepository.save(user);
+      return { message: 'User created', user };
+
+    } catch (error) {
+      console.error('Error saving user:', error);
+      throw new HttpException('Internal server error', HttpStatus.INTERNAL_SERVER_ERROR);
+  
+    }
+    
+   
   }
+
+  async delete(id: number){
+    const user = await this.userRepository.findOne({
+      where: { id }, // Pass the id inside the 'where' object
+    });
+
+    // If the user is not found, throw a NotFoundException
+    if (!user) {
+      throw new HttpException(
+        'User does not exist',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    // Delete the user from the database
+    await this.userRepository.delete(id);
+    return { message: 'User was deleted', user };
+  }
+
+
+  }
+
 
   async findAll() {
     const users = await this.userRepository.find();

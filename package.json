@@ -5,14 +5,14 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "scripts": {
+  "scripts": { 
     "migration:gen": "npm run typeorm -- migration:generate ./src/migration/$npm_config_name",
-      "migration:add": "npm run typeorm -- migration:create",
-      "migration:up": "npm run typeorm -- migration:run",
-      "migration:down": "npm run typeorm -- migration:revert",
-      "migration:drop-schema": "npm run typeorm schema:drop",
-      "migration:create": "npx ts-node ./node_modules/typeorm/cli.js migration:create -n",
-      "typeorm": "ts-node -r tsconfig-paths/register -T --files ./node_modules/typeorm/cli.js -d ./ormconfig.ts",
+    "migration:add": "npm run typeorm -- migration:create",
+    "migration:up": "npm run typeorm -- migration:run",
+    "migration:down": "npm run typeorm -- migration:revert",
+    "migration:drop-schema": "npm run typeorm schema:drop",
+    "migration:create": "npx ts-node ./node_modules/typeorm/cli.js migration:create -n",
+    "typeorm": "ts-node -r tsconfig-paths/register -T --files ./node_modules/typeorm/cli.js -d ./ormconfig.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -39,6 +39,7 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.2.0",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
