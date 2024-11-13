@@ -22,5 +22,11 @@ export class ItemService {
 
   remove(id: number) {
     return `This action removes a #${id} item`;
+  }  
+  
+async searchByName(name: string) {
+    return this.itemRepository.find({
+      where: { name: ILike(`%${name}%`) },
+    });
   }
 }
