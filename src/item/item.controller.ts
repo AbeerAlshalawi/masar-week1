@@ -31,4 +31,11 @@ export class ItemController {
   remove(@Param('id') id: string) {
     return this.itemService.remove(+id);
   }
+
+  @Get('search/:name')
+  search(@Param('name') name: string) {
+    return this.itemService.searchByName(name);
+  }
 }
+
+
