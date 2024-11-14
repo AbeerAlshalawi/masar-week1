@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UserController {
@@ -21,8 +22,6 @@ export class UserController {
     const { id } = body;  // Extract the 'id' from the body
     await this.userService.delete(id);  // Call the service to delete the user
     return { message: `User with ID ${id} deleted successfully` };
-
-
   }
 
   @Get('')
@@ -30,18 +29,24 @@ export class UserController {
     return this.userService.findAll();
 
   }
-  @Delete(':id')
-  async delete(@Param('id') id: string) {
-    const userRepo = this.dataSource.getRepository(User);
-    const user = await userRepo.findOne({ where: { id: parseInt(id) } });
+  // @Delete(':id')
+  // async delete(@Param('id') id: string) {
+  //   const userRepo = this.dataSource.getRepository(User);
+  //   const user = await userRepo.findOne({ where: { id: parseInt(id) } });
 
-    if (!user) {
-      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-    }
+  //   if (!user) {
+  //     throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+  //   }
 
-    await userRepo.remove(user);
+  //   await userRepo.remove(user);
 
-    return { message: 'User deleted successfully' };
+  //   return { message: 'User deleted successfully' };
 
+  // }
+
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.update(parseInt(id), updateUserDto);
   }
+
 }
