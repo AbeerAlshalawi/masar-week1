@@ -77,7 +77,7 @@ export class UserService {
     return `This action removes a #${id} user`;
   }
 
-  //this is the new method its Update user info 
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     const existingUser = await this.userRepository.findOneBy({ id });
 
@@ -95,4 +95,4 @@ export class UserService {
 
     return this.userRepository.save(existingUser);
   }
-}
+

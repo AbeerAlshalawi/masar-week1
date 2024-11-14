@@ -22,8 +22,6 @@ export class UserController {
     const { id } = body;  // Extract the 'id' from the body
     await this.userService.delete(id);  // Call the service to delete the user
     return { message: `User with ID ${id} deleted successfully` };
-
-
   }
 
   @Get('')
@@ -46,9 +44,10 @@ export class UserController {
 
   // }
 
-  //this is the new end point Update User info
+
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(parseInt(id), updateUserDto);
   }
+
 }
