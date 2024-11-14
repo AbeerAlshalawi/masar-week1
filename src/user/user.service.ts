@@ -95,4 +95,4 @@ export class UserService {
 
     return this.userRepository.save(existingUser);
   }
-
+}
