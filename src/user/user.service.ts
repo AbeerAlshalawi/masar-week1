@@ -57,7 +57,7 @@ export class UserService {
   }
 
 
-  }
+  
 
 
   async findAll() {
@@ -69,11 +69,30 @@ export class UserService {
     return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return `This action updates a #${id} user`;
+  // }
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  //this is the new method its Update user info 
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const existingUser = await this.userRepository.findOneBy({ id });
+
+    if (!existingUser) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    // Only update fields that are provided in updateUserDto
+    if (updateUserDto.fullName !== undefined) {
+      existingUser.fullName = updateUserDto.fullName;
+    }
+    if (updateUserDto.age !== undefined) {
+      existingUser.age = updateUserDto.age;
+    }
+
+    return this.userRepository.save(existingUser);
   }
 }
